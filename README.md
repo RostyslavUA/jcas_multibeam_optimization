@@ -1,5 +1,5 @@
 # Multibeam Optimization for Joint Communication and Sensing (JCAS)
-As a part of the university project, I have optimized a set of multibeams for JCAS using Two-Step Iterative Least Square approach. The idea is coming from the
+As a part of the university project, I have optimized a set of multibeams for JCAS using Two-Step Iterative Least Square approach in MATLAB. The idea is coming from the
 paper https://ieeexplore.ieee.org/document/8550811. 
 Below, you can see an optimized multibeam with two subbeams: one for communication, another for sensing (click for better resolution).
 ![comAndSensBeams](https://user-images.githubusercontent.com/49762976/173124245-c8179273-62e8-464c-b4c3-09ebd1afa906.png)
