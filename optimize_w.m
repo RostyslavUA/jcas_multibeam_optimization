@@ -60,12 +60,12 @@ for i = 1:size(WtV, 1)
         + sqrt(1-ro)*Ws_s(:, i)'*V_pattern_s;
 end%for
 %% Plot a combined beam
-plot(theta, 20*log10(abs(WtV(2, :))))
-text(0.1, 10, '\leftarrowCommunication Beam')
-text(-1.5, 10, 'Sensing Beam\rightarrow')
+plot(theta*180/pi, 20*log10(abs(WtV(2, :))))
+text(4, 10, '\leftarrowCommunication Beam')
+text(-53, 10, 'Sensing Beam\rightarrow')
 xlabel("\theta in rad")
 ylabel("|A(\theta)|, dB")
-xlim([-pi/2, pi/2])
+xlim([-70, 70])
 ylim([-30, 20])
 %% Plot the combined beams
 figure;
@@ -73,23 +73,7 @@ hold on;
 for i = 1:size(WtV, 1)
     plot(theta, 20*log10(abs(WtV(i, :))));
 end%for
-xlabel("\theta in rad")
+xlabel("\theta in degrees")
 ylabel("|A(\theta)|, dB")
 xlim([-pi/2, pi/2])
 ylim([-30, 20])
-%% Comparison of the initial, optimized, desired and usual (for this array)
-% patterns
-% plot(theta, 20*log10(abs(P_refGen)), 'black--')
-% hold on
-% plot(theta, 20*log10(abs(P_init)), 'b')
-% hold on
-% plot (theta, 20*log10(abs(W'*V_pattern_s)), 'r')  % Sidelobe mismatch bcz there's no constraint on the main lobe (as an argument)
-% hold on
-% plot(theta, 20*log10(abs(PdM)), 'b:')
-% 
-% xlabel("\theta in rad")
-% ylabel("|A(\theta)|, dB")
-% xlim([-pi/2, pi/2])
-% ylim([-55, 0]);
-% lgd = legend('12-ULA with Capon''s-initialized BF weights', ...
-% 'Initial Pattern', 'Approximated Pattern', 'Desired Pattern');
