@@ -9,7 +9,7 @@ for i = 1:iter_nr
     V = V_pattern(:, alpha);
     % Step 3 - Condition of convergence
     % Set of indicies that aren't optimal yet
-    K = find(abs(PM(:, alpha)-PdM(:, alpha)) > 0.001);
+    K = find(abs(PM(:, alpha)-PdM(:, alpha)) > 1e-3);
     fprintf("Iteration %i, Total difference is %f \n", i, ...
         sum(abs(PM(:, alpha)-PdM(:, alpha))));
     if isempty(K)
@@ -19,11 +19,11 @@ for i = 1:iter_nr
     % Iterative Least-Squares
     while (1)
         % Replacing V_pattern by V
-        PdP = W0'*V*inv(diag(PdM(:, alpha))); % Replace inv by pinv -> very 
-        % long computation time
-        PdP0 = PdP./abs(PdP);
+        PdP = W0'*V*pinv(diag(PdM(:, alpha))); % ***Replace inv by pinv -> very 
+        % long computation time***
+        PdP0 = PdP./max(abs(PdP));
         W1 = inv(V*V')*V*diag(PdM(:, alpha))*PdP0';
-        if norm(W1-W0)^2 < 10^(-4)
+        if norm(W1-W0)^2 < 1e-4
             break;
         else
             W0 = W1;
