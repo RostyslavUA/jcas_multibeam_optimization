@@ -54,10 +54,10 @@ ylim([-35, 1])
 %spacing = 2*asin(1.2/M); % Fractional part may spoil the subbeam location
 spacing=0.2;
 deltas = -0.8:spacing:0.8; % approx. -53...53 degrees
+%deltas = [0, sin(10.8*pi/180)]; % For Mengshuai
 W_dd = zeros(M, size(deltas, 2));
 for i=1:size(deltas, 2)
     W_dd(:, i) = displacePattern(W_ref, deltas(i), M);
-    %W_dd(:, i) = displacePattern(W_ref, deltas(i), M);
 end%for
 %% Plot the beams coming from the optimized beamforming vectors
 figure;
@@ -79,6 +79,7 @@ W_dd = W_dd./vecnorm(W_dd, 2, 2);
 W_t = zeros(M, size(deltas, 2)-1);
 % It is assumed that central beam is the one used for communication
 comBeamIdx = cast(size(deltas, 2)/2, 'uint32');
+%comBeamIdx = 1; % for Mengshuai
 j=1;
 for i = 1:size(W_dd, 2)
     if i~=comBeamIdx
